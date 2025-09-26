@@ -1,0 +1,50 @@
+{% trans_default_domain "contao_default" %}
+{% extends "@Contao/content_element/_base.html.twig" %}
+{% use "@Contao/component/_splash_screen.html.twig" %}
+{% use "@Contao/component/_picture.html.twig" %}
+
+{% block content %}
+    {% if error is defined %}
+        <p>{{error}}</p>
+    {% else %}
+        <figure>
+            {% if as_editor_view %}
+                {{ block('splash_screen_content') }}
+            {% else %}
+                {{ block('player_content') }}
+            {% endif %}
+
+            {% block player_caption %}
+                {% if caption %}
+                    <figcaption>
+                        {{- caption|insert_tag_raw -}}
+                    </figcaption>
+                {% endif %}
+            {% endblock %}
+
+        </figure>
+    {% endif %}
+{% endblock %}
+
+{% block player_content %}
+    {% if splash_image %}
+            {{ block('splash_screen_component') }}
+    {% else %}
+            {{ block('splash_screen_content') }}
+    {% endif %}
+{% endblock %}
+
+{% block splash_screen_button_content  %}
+
+    {% with {figure: splash_image} %}{{ block('picture_component') }}{% endwith %}
+
+    {% block splash_screen_text %}
+        {% if type == 'apple' %}
+        <span>{{ ('MSC.musicSplashScreen.apple')|trans }}</span>
+        {% endif %}
+        {% if type == 'spotify' %}
+        <span>{{ ('MSC.musicSplashScreen.spotify')|trans }}</span>
+        {% endif %}
+    {% endblock %}
+
+{% endblock %}

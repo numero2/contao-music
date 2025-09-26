@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.1">
+<file>
+<body>
+    <trans-unit id="CTE.music">
+        <target>Musik Player</target>
+    </trans-unit>
+    <trans-unit id="CTE.spotify.0">
+        <target>Spotify Player</target>
+    </trans-unit>
+    <trans-unit id="CTE.spotify.1">
+        <target>Erzeugt ein Element zur Wiedergabe von Spotify Audio</target>
+    </trans-unit>
+    <trans-unit id="CTE.apple.0">
+        <target>Apple Player</target>
+    </trans-unit>
+    <trans-unit id="CTE.apple.1">
+        <target>Erzeugt ein Element zur Wiedergabe von Apple Audio</target>
+    </trans-unit>
+    <trans-unit id="MSC.musicError.invalidLink">
+        <target>Die Audio konnte nicht gefunden werden, bitte überprüfe deinen Audiolink.</target>
+    </trans-unit>
+    <trans-unit id="MSC.musicSplashScreen.spotify">
+        <target>Bitte klicken, um die Audio zu laden. Ihre IP-Adresse wird an Spotify übermittelt.</target>
+    </trans-unit>
+    <trans-unit id="MSC.musicSplashScreen.apple">
+        <target>Bitte klicken, um die Audio zu laden. Ihre IP-Adresse wird an Apple übermittelt.</target>
+    </trans-unit>
+</body>
+</file>
+</xliff>

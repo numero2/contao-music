@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.1">
+<file>
+<body>
+    <!-- FIELDS -->
+    <trans-unit id="tl_content.sourceId.0">
+        <target>Audio Link</target>
+    </trans-unit>
+    <trans-unit id="tl_content.sourceId.1">
+        <target>Bitte geben Sie den Link zu Ihrer Audio an.</target>
+    </trans-unit>
+    <trans-unit id="tl_content.spotifyVideo.0">
+        <target>Video verwenden</target>
+    </trans-unit>
+    <trans-unit id="tl_content.spotifyVideo.1">
+        <target>Wenn verfügbar, Video der Audio verwenden</target>
+    </trans-unit>
+    <trans-unit id="tl_content.spotifyTheme.0">
+        <target>Player Theme</target>
+    </trans-unit>
+    <trans-unit id="tl_content.spotifyTheme.1">
+        <target>Hier können Sie das Theme des Players auswählen.</target>
+    </trans-unit>
+    <trans-unit id="tl_content.spotifyThemes.0">
+        <target>Farbe 1</target>
+    </trans-unit>
+    <trans-unit id="tl_content.spotifyThemes.1">
+        <target>Farbe 2</target>
+    </trans-unit>
+    <trans-unit id="tl_content.appleTheme.0">
+        <target>Player Theme</target>
+    </trans-unit>
+    <trans-unit id="tl_content.appleTheme.1">
+        <target>Hier können Sie das Theme des Players auswählen.</target>
+    </trans-unit>
+    <trans-unit id="tl_content.appleThemes.auto">
+        <target>Automatisch</target>
+    </trans-unit>
+    <trans-unit id="tl_content.appleThemes.light">
+        <target>Hell</target>
+    </trans-unit>
+    <trans-unit id="tl_content.appleThemes.dark">
+        <target>Dunkel</target>
+    </trans-unit>
+    <trans-unit id="tl_content.musicSplashImage.0">
+        <target>Ein Vorschaubild verwenden</target>
+    </trans-unit>
+    <trans-unit id="tl_content.musicSplashImage.1">
+        <target>Den Player erst laden, nachdem der Benutzer auf das Vorschaubild geklickt hat.</target>
+    </trans-unit>
+    <trans-unit id="tl_content.musicSplashSRC.0">
+        <target>Quelldatei</target>
+    </trans-unit>
+    <trans-unit id="tl_content.musicSplashSRC.1">
+        <target>Bitte wählen Sie eine Datei oder einen Ordner aus der Dateiübersicht. (leer lassen um das Bild der Audio zu nutzen)</target>
+    </trans-unit>
+    <trans-unit id="tl_content.musicPlayerSize.0">
+        <target>Player größe</target>
+    </trans-unit>
+    <trans-unit id="tl_content.musicPlayerSize.1">
+        <target>Bitte wählen Sie die Dartsellungsgröße des Players.</target>
+    </trans-unit>
+    <trans-unit id="tl_content.musicPlayerSizes.big">
+        <target>Groß</target>
+    </trans-unit>
+    <trans-unit id="tl_content.musicPlayerSizes.compact">
+        <target>Kompakt</target>
+    </trans-unit>
+    <trans-unit id="tl_content.sizeError">
+        <target>Bitte gebe nur Zahlen oder % ein!</target>
+    </trans-unit>
+</body>
+</file>
+</xliff>

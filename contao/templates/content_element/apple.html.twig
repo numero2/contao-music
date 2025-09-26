@@ -1,0 +1,5 @@
+{% extends "@Contao/content_element/_music_player.html.twig" %}
+
+{% block splash_screen_content %}
+    <iframe title="Apple music player" height="450" src="https://embed.{{embedType}}.apple.com/de/{{variant}}/{{id}}&amp;itscg=30200&amp;itsct={{embedType}}_box_player&amp;{{theme}}" id="embedPlayer" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation-by-user-activation" allow="autoplay *; encrypted-media *; clipboard-write" style="border: 0px; border-radius: 12px; width: 100%;"></iframe>
+{% endblock %}

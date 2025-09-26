@@ -1,0 +1,5 @@
+{% extends "@Contao/content_element/_music_player.html.twig" %}
+
+{% block splash_screen_content %}
+    <iframe title="Spotify music player" style="border-radius:12px" src="{{link}}&amp;{{theme}}" width="{{playerWidth}}" height="{{playerHeight}}" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+{% endblock %}

@@ -1,0 +1,20 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    _instanceof:
+        Contao\CoreBundle\Framework\FrameworkAwareInterface:
+            calls:
+                - [setFramework, ['@contao.framework']]
+
+        Symfony\Bundle\FrameworkBundle\Controller\AbstractController:
+            calls:
+                - [setContainer, ['@Psr\Container\ContainerInterface']]
+
+
+    numero2\MusicBundle\Controller\ContentElement\MusicController:
+        arguments:
+            - '@contao.image.studio'
+            - '@filesystem'
+            - '@contao.translation.translator'
