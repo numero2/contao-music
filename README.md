@@ -17,6 +17,4 @@ Installation
 --
 
 * Install via Contao Manager or Composer (`composer require numero2/contao-music`)
-* Run a database update via the Contao-Installtool or using the [contao:migrate](https://docs.contao.org/dev/reference/commands/) command.
-
-```
+* Run a database update via the Contao Manager or using the [contao:migrate](https://docs.contao.org/dev/reference/commands/) command.
