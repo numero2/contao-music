@@ -4,8 +4,9 @@
  * Music bundle for Contao Open Source CMS
  *
  * @author    Christopher Brandt <christopher.brandt@numero2.de>
+ * @author    Benny Born <benny.born@numero2.de>
  * @license   LGPL
- * @copyright Copyright (c) 2025, numero2 - Agentur für digitales Marketing GbR
+ * @copyright Copyright (c) 2026, numero2 - Agentur für digitales Marketing GbR
  */
 
 
@@ -83,13 +84,16 @@ class MusicController extends AbstractContentElementController {
 
         // try to fetch data from the spotify api
         $data = null;
+
         try {
+
             $client = HttpClient::create();
             $response = $client->request('GET', 'https://open.spotify.com/oembed?url='.$model->sourceId);
             $data = $response->toArray();
+
         } catch( Exception $e) {}
 
-        if (!$data) {
+        if( !$data ) {
             $template->set('error', $this->translator->trans('MSC.musicError.invalidLink', [], 'contao_default'));
             return $template->getResponse();
         }
@@ -97,62 +101,67 @@ class MusicController extends AbstractContentElementController {
         $link = $data['iframe_url'];
 
         // check if the source contains a video
-        if (str_contains($link, '/video?')) {
+        if( str_contains($link, '/video?') ) {
 
             // when videos are disabled, use just audio
-            if (!$model->spotifyVideo) {
+            if( !$model->spotifyVideo ) {
                 $link = str_replace("/video?", '?', $link);
             } else {
                 $containsVideo = true;
             }
         }
 
+        $template->set('splash_image', null);
+
         if( $model->musicSplashImage == true ) {
 
             // download thumbnail image if no image provided
             if( empty($model->musicSplashSRC) ) {
 
-                $thumbnail = $data['thumbnail_url'];
+                $thumbnail = ($data['thumbnail_url']??null);
 
-                // create path where the image should be saved
-                $cacheDir = System::getContainer()->getParameter('contao.image.target_dir');
-                $cachePath = 'spotify/'.md5($thumbnail).'.jpg';
-                $cachePath = $cacheDir.'/'.$cachePath;
+                if( $thumbnail ) {
 
-                // check if the image already exists, if not download it
-                if( !$this->filesystem->exists($cachePath) || filesize($cachePath) == 0 ) {
+                    // create path where the image should be saved
+                    $cacheDir = System::getContainer()->getParameter('contao.image.target_dir');
+                    $cachePath = 'spotify/'.md5($thumbnail).'.jpg';
+                    $cachePath = $cacheDir.'/'.$cachePath;
 
-                    try {
-                        // save the image from the url to the filesystem
-                        $fileContent = @file_get_contents($thumbnail);
+                    // check if the image already exists, if not download it
+                    if( !$this->filesystem->exists($cachePath) || filesize($cachePath) == 0 ) {
 
-                        if( $fileContent ) {
-                            $this->filesystem->dumpFile($cachePath, $fileContent);
+                        try {
+                            // save the image from the url to the filesystem
+                            $fileContent = @file_get_contents($thumbnail);
+
+                            if( $fileContent ) {
+                                $this->filesystem->dumpFile($cachePath, $fileContent);
+                            }
+
+                        } catch( Exception $e ) {
+                            throw $this->createException('Could not safe image to filesystem. Are your permission correct?');
                         }
 
-                    } catch( Exception $e ) {
-                        throw $this->createException('Could not safe image to filesystem. Are your permission correct?');
                     }
 
-                }
+                    if( $this->filesystem->exists($cachePath) && filesize($cachePath) > 0 ) {
 
-                if( $this->filesystem->exists($cachePath) && filesize($cachePath) > 0 ) {
+                        // get path to the image
+                        $rootDir = System::getContainer()->getParameter('kernel.project_dir');
+                        $src = Path::makeRelative($cachePath, $rootDir);
 
-                    // get path to the image
-                    $rootDir = System::getContainer()->getParameter('kernel.project_dir');
-                    $src = Path::makeRelative($cachePath, $rootDir);
+                        $figureBuilder = $this->imageStudio->createFigureBuilder();
+                        $figureBuilder->from($src);
 
-                    $figureBuilder = $this->imageStudio->createFigureBuilder();
-                    $figureBuilder->from($src);
+                        if( $model->size ?? null ) {
+                            $figureBuilder->setSize($model->size);
+                        }
 
-                    if( $model->size ?? null ) {
-                        $figureBuilder->setSize($model->size);
-                    }
+                        $figure = $figureBuilder->buildIfResourceExists();
 
-                    $figure = $figureBuilder->buildIfResourceExists();
-
-                    if( $figure ) {
-                        $template->set('splash_image', $figure);
+                        if( $figure ) {
+                            $template->set('splash_image', $figure);
+                        }
                     }
                 }
 
@@ -172,9 +181,6 @@ class MusicController extends AbstractContentElementController {
                 }
 
             }
-
-        } else {
-            $template->set('splash_image', null);
         }
 
         $containsVideo = false;
